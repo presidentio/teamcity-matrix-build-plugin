@@ -1,0 +1,1093 @@
+<?xml version="1.0" standalone="yes"?>
+  <xs:schema version="1.0"  targetNamespace="http://dto.rest.teamcity.presidentio.com" xmlns:xs="http://www.w3.org/2001/XMLSchema"
+             xmlns:ns1="http://cctray.rest.teamcity.presidentio.com" xmlns:tc="http://dto.rest.teamcity.presidentio.com">
+
+  <xs:import namespace="http://cctray.rest.teamcity.presidentio.com" schemaLocation="xsd0.xsd"/>
+
+  <xs:element name="TcProjects" type="ns1:projects"/>
+
+  <xs:element name="agent" type="tc:agent"/>
+
+  <xs:element name="agent-requirement" type="tc:propEntityAgentRequirement"/>
+
+  <xs:element name="agent-requirements" type="tc:propEntitiesAgentRequirement"/>
+
+  <xs:element name="agentPool" type="tc:agentPool"/>
+
+  <xs:element name="agentPools" type="tc:agentPools"/>
+
+  <xs:element name="agents" type="tc:agents-ref"/>
+
+  <xs:element name="artifact-dependencies" type="tc:propEntitiesArtifactDep"/>
+
+  <xs:element name="artifact-dependency" type="tc:propEntityArtifactDep"/>
+
+  <xs:element name="branch" type="tc:branch"/>
+
+  <xs:element name="branches" type="tc:branches"/>
+
+  <xs:element name="build" type="tc:build"/>
+
+  <xs:element name="buildCancelRequest" type="tc:buildCancelRequest"/>
+
+  <xs:element name="buildTriggeringOptions" type="tc:buildTriggeringOptions"/>
+
+  <xs:element name="buildType" type="tc:buildType"/>
+
+  <xs:element name="buildTypes" type="tc:buildTypes"/>
+
+  <xs:element name="builds" type="tc:builds"/>
+
+  <xs:element name="change" type="tc:change"/>
+
+  <xs:element name="changes" type="tc:changes"/>
+
+  <xs:element name="comment" type="tc:comment"/>
+
+  <xs:element name="compatibilities" type="tc:compatibilities"/>
+
+  <xs:element name="compatibility" type="tc:compatibility"/>
+
+  <xs:element name="entries" type="tc:entries"/>
+
+  <xs:element name="entry" type="tc:entry"/>
+
+  <xs:element name="feature" type="tc:propEntityFeature"/>
+
+  <xs:element name="features" type="tc:propEntitiesFeature"/>
+
+  <xs:element name="file" type="tc:file"/>
+
+  <xs:element name="files" type="tc:files"/>
+
+  <xs:element name="group" type="tc:group"/>
+
+  <xs:element name="groups" type="tc:groups"/>
+
+  <xs:element name="href" type="tc:HReference"/>
+
+  <xs:element name="investigation" type="tc:investigation"/>
+
+  <xs:element name="investigations" type="tc:investigations"/>
+
+  <xs:element name="issues" type="tc:issues"/>
+
+  <xs:element name="issuesUsages" type="tc:issueUsages"/>
+
+  <xs:element name="items" type="tc:items"/>
+
+  <xs:element name="mutes" type="tc:mutes"/>
+
+  <xs:element name="newBuildTypeDescription" type="tc:newBuildTypeDescription"/>
+
+  <xs:element name="newProjectDescription" type="tc:newProjectDescription"/>
+
+  <xs:element name="plugin" type="tc:pluginInfo"/>
+
+  <xs:element name="plugins" type="tc:pluginInfos"/>
+
+  <xs:element name="problem" type="tc:problem"/>
+
+  <xs:element name="problemOccurrence" type="tc:problemOccurrence"/>
+
+  <xs:element name="problemOccurrences" type="tc:problemOccurrences"/>
+
+  <xs:element name="problems" type="tc:problems"/>
+
+  <xs:element name="progress-info" type="tc:runningBuildInfo"/>
+
+  <xs:element name="project" type="tc:project"/>
+
+  <xs:element name="projects" type="tc:projects"/>
+
+  <xs:element name="properties" type="tc:properties"/>
+
+  <xs:element name="property" type="tc:property"/>
+
+  <xs:element name="requirements" type="tc:requirements"/>
+
+  <xs:element name="role" type="tc:roleAssignment"/>
+
+  <xs:element name="roles" type="tc:roleAssignments"/>
+
+  <xs:element name="server" type="tc:server"/>
+
+  <xs:element name="snapshot-dependencies" type="tc:propEntitiesSnapshotDep"/>
+
+  <xs:element name="snapshot-dependency" type="tc:propEntitySnapshotDep"/>
+
+  <xs:element name="step" type="tc:propEntityStep"/>
+
+  <xs:element name="steps" type="tc:propEntitiesStep"/>
+
+  <xs:element name="tag" type="tc:tag"/>
+
+  <xs:element name="tags" type="tc:tags"/>
+
+  <xs:element name="test" type="tc:test"/>
+
+  <xs:element name="testOccurrence" type="tc:testOccurrence"/>
+
+  <xs:element name="testOccurrences" type="tc:testOccurrences"/>
+
+  <xs:element name="tests" type="tc:tests"/>
+
+  <xs:element name="trigger" type="tc:propEntityTrigger"/>
+
+  <xs:element name="triggers" type="tc:propEntitiesTrigger"/>
+
+  <xs:element name="type" type="tc:parameterType"/>
+
+  <xs:element name="user" type="tc:user"/>
+
+  <xs:element name="users" type="tc:users"/>
+
+  <xs:element name="vcsRoot" type="tc:vcsRoot"/>
+
+  <xs:element name="vcsRootEntries" type="tc:vcsRootEntries"/>
+
+  <xs:element name="vcsRootEntry" type="tc:vcsRootEntry"/>
+
+  <xs:element name="vcsRootInstance" type="tc:vcsRootInstance"/>
+
+  <xs:element name="vcsRootInstances" type="tc:vcsRootInstances"/>
+
+  <xs:element name="vcsRoots" type="tc:vcsRoots"/>
+
+  <xs:element name="vcsLabeling" type="tc:vcsLabelingOptions"/>
+
+  <xs:complexType name="propEntitySnapshotDep">
+    <xs:complexContent>
+      <xs:extension base="tc:propEntity">
+        <xs:sequence>
+          <xs:element name="source-buildType" type="tc:buildType" minOccurs="0"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="propEntity">
+    <xs:sequence>
+      <xs:element ref="tc:properties" minOccurs="0"/>
+    </xs:sequence>
+    <xs:attribute name="id" type="xs:string"/>
+    <xs:attribute name="name" type="xs:string"/>
+    <xs:attribute name="type" type="xs:string"/>
+    <xs:attribute name="disabled" type="xs:boolean"/>
+  </xs:complexType>
+
+  <xs:complexType name="buildType">
+    <xs:sequence>
+      <xs:element ref="tc:project" minOccurs="0"/>
+      <xs:element name="template" type="tc:buildType" minOccurs="0"/>
+      <xs:element ref="tc:vcsRootEntries" minOccurs="0"/>
+      <xs:element name="settings" type="tc:properties" minOccurs="0"/>
+      <xs:element name="parameters" type="tc:properties" minOccurs="0"/>
+      <xs:element ref="tc:steps" minOccurs="0"/>
+      <xs:element ref="tc:features" minOccurs="0"/>
+      <xs:element ref="tc:triggers" minOccurs="0"/>
+      <xs:element ref="tc:snapshot-dependencies" minOccurs="0"/>
+      <xs:element ref="tc:artifact-dependencies" minOccurs="0"/>
+      <xs:element ref="tc:agent-requirements" minOccurs="0"/>
+      <xs:element ref="tc:builds" minOccurs="0"/>
+      <xs:element ref="tc:investigations" minOccurs="0"/>
+    </xs:sequence>
+    <xs:attribute name="id" type="xs:string"/>
+    <xs:attribute name="internalId" type="xs:string"/>
+    <xs:attribute name="name" type="xs:string"/>
+    <xs:attribute name="templateFlag" type="xs:boolean"/>
+    <xs:attribute name="paused" type="xs:boolean"/>
+    <xs:attribute name="uuid" type="xs:string"/>
+    <xs:attribute name="description" type="xs:string"/>
+    <xs:attribute name="projectName" type="xs:string"/>
+    <xs:attribute name="projectId" type="xs:string"/>
+    <xs:attribute name="projectInternalId" type="xs:string"/>
+    <xs:attribute name="href" type="xs:string"/>
+    <xs:attribute name="webUrl" type="xs:string"/>
+    <xs:attribute name="locator" type="xs:string"/>
+  </xs:complexType>
+
+  <xs:complexType name="project">
+    <xs:sequence>
+      <xs:element name="parentProject" type="tc:project" minOccurs="0"/>
+      <xs:element ref="tc:buildTypes" minOccurs="0"/>
+      <xs:element name="templates" type="tc:buildTypes" minOccurs="0"/>
+      <xs:element name="parameters" type="tc:properties" minOccurs="0"/>
+      <xs:element name="vcsRoots" type="tc:vcsRoots" minOccurs="0"/>
+      <xs:element ref="tc:projects" minOccurs="0"/>
+    </xs:sequence>
+    <xs:attribute name="id" type="xs:string"/>
+    <xs:attribute name="internalId" type="xs:string"/>
+    <xs:attribute name="uuid" type="xs:string"/>
+    <xs:attribute name="name" type="xs:string"/>
+    <xs:attribute name="parentProjectId" type="xs:string"/>
+    <xs:attribute name="parentProjectInternalId" type="xs:string"/>
+    <xs:attribute name="parentProjectName" type="xs:string"/>
+    <xs:attribute name="archived" type="xs:boolean"/>
+    <xs:attribute name="description" type="xs:string"/>
+    <xs:attribute name="href" type="xs:string"/>
+    <xs:attribute name="webUrl" type="xs:string"/>
+    <xs:attribute name="locator" type="xs:string"/>
+  </xs:complexType>
+
+  <xs:complexType name="buildTypes">
+    <xs:sequence>
+      <xs:element ref="tc:buildType" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+    <xs:attribute name="count" type="xs:int"/>
+    <xs:attribute name="href" type="xs:string"/>
+    <xs:attribute name="nextHref" type="xs:string"/>
+    <xs:attribute name="prevHref" type="xs:string"/>
+  </xs:complexType>
+
+  <xs:complexType name="properties">
+    <xs:sequence>
+      <xs:element ref="tc:property" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+    <xs:attribute name="count" type="xs:int"/>
+    <xs:attribute name="href" type="xs:string"/>
+  </xs:complexType>
+
+  <xs:complexType name="property">
+    <xs:sequence>
+      <xs:element ref="tc:type" minOccurs="0"/>
+    </xs:sequence>
+    <xs:attribute name="name" type="xs:string"/>
+    <xs:attribute name="value" type="xs:string"/>
+    <xs:attribute name="own" type="xs:boolean"/>
+  </xs:complexType>
+
+  <xs:complexType name="parameterType">
+    <xs:sequence/>
+    <xs:attribute name="rawValue" type="xs:string"/>
+  </xs:complexType>
+
+  <xs:complexType name="vcsRoots">
+    <xs:sequence>
+      <xs:element ref="tc:vcsRoot" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+    <xs:attribute name="count" type="xs:int"/>
+    <xs:attribute name="href" type="xs:string"/>
+    <xs:attribute name="nextHref" type="xs:string"/>
+    <xs:attribute name="prevHref" type="xs:string"/>
+  </xs:complexType>
+
+  <xs:complexType name="vcsRoot">
+    <xs:sequence>
+      <xs:element ref="tc:project" minOccurs="0"/>
+      <xs:element ref="tc:properties" minOccurs="0"/>
+      <xs:element name="vcsRootInstances" type="tc:vcsRootInstances" minOccurs="0"/>
+    </xs:sequence>
+    <xs:attribute name="id" type="xs:string"/>
+    <xs:attribute name="internalId" type="xs:long"/>
+    <xs:attribute name="uuid" type="xs:string"/>
+    <xs:attribute name="name" type="xs:string"/>
+    <xs:attribute name="vcsName" type="xs:string"/>
+    <xs:attribute name="modificationCheckInterval" type="xs:int"/>
+    <xs:attribute name="status" type="xs:string"/>
+    <xs:attribute name="lastChecked" type="xs:string"/>
+    <xs:attribute name="href" type="xs:string"/>
+    <xs:attribute name="projectLocator" type="xs:string"/>
+    <xs:attribute name="locator" type="xs:string"/>
+  </xs:complexType>
+
+  <xs:complexType name="vcsRootInstances">
+    <xs:sequence>
+      <xs:element ref="tc:vcsRootInstance" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+    <xs:attribute name="count" type="xs:int"/>
+    <xs:attribute name="href" type="xs:string"/>
+    <xs:attribute name="nextHref" type="xs:string"/>
+    <xs:attribute name="prevHref" type="xs:string"/>
+  </xs:complexType>
+
+  <xs:complexType name="vcsRootInstance">
+    <xs:sequence>
+      <xs:element ref="tc:vcsRoot" minOccurs="0"/>
+      <xs:element ref="tc:properties" minOccurs="0"/>
+    </xs:sequence>
+    <xs:attribute name="id" type="xs:string"/>
+    <xs:attribute name="vcs-root-id" type="xs:string"/>
+    <xs:attribute name="vcsRootInternalId" type="xs:string"/>
+    <xs:attribute name="name" type="xs:string"/>
+    <xs:attribute name="vcsName" type="xs:string"/>
+    <xs:attribute name="status" type="xs:string"/>
+    <xs:attribute name="lastChecked" type="xs:string"/>
+    <xs:attribute name="lastVersion" type="xs:string"/>
+    <xs:attribute name="lastVersionInternal" type="xs:string"/>
+    <xs:attribute name="href" type="xs:string"/>
+    <xs:attribute name="projectLocator" type="xs:string"/>
+  </xs:complexType>
+
+  <xs:complexType name="projects">
+    <xs:sequence>
+      <xs:element ref="tc:project" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+    <xs:attribute name="count" type="xs:int"/>
+    <xs:attribute name="href" type="xs:string"/>
+    <xs:attribute name="nextHref" type="xs:string"/>
+    <xs:attribute name="prevHref" type="xs:string"/>
+  </xs:complexType>
+
+  <xs:complexType name="vcsRootEntries">
+    <xs:sequence>
+      <xs:element ref="tc:vcsRootEntry" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+    <xs:attribute name="count" type="xs:int"/>
+  </xs:complexType>
+
+  <xs:complexType name="vcsRootEntry">
+    <xs:sequence>
+      <xs:element ref="tc:vcsRoot" minOccurs="0"/>
+      <xs:element name="checkout-rules" type="xs:string" minOccurs="0"/>
+    </xs:sequence>
+    <xs:attribute name="id" type="xs:string"/>
+  </xs:complexType>
+
+  <xs:complexType name="propEntitiesStep">
+    <xs:sequence>
+      <xs:element ref="tc:step" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+    <xs:attribute name="count" type="xs:int"/>
+  </xs:complexType>
+
+  <xs:complexType name="propEntityStep">
+    <xs:complexContent>
+      <xs:extension base="tc:propEntity">
+        <xs:sequence/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="propEntitiesFeature">
+    <xs:sequence>
+      <xs:element ref="tc:feature" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+    <xs:attribute name="count" type="xs:int"/>
+  </xs:complexType>
+
+  <xs:complexType name="propEntityFeature">
+    <xs:complexContent>
+      <xs:extension base="tc:propEntity">
+        <xs:sequence/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="propEntitiesTrigger">
+    <xs:sequence>
+      <xs:element ref="tc:trigger" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+    <xs:attribute name="count" type="xs:int"/>
+  </xs:complexType>
+
+  <xs:complexType name="propEntityTrigger">
+    <xs:complexContent>
+      <xs:extension base="tc:propEntity">
+        <xs:sequence/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="propEntitiesSnapshotDep">
+    <xs:sequence>
+      <xs:element ref="tc:snapshot-dependency" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+    <xs:attribute name="count" type="xs:int"/>
+  </xs:complexType>
+
+  <xs:complexType name="propEntitiesArtifactDep">
+    <xs:sequence>
+      <xs:element ref="tc:artifact-dependency" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+    <xs:attribute name="count" type="xs:int"/>
+  </xs:complexType>
+
+  <xs:complexType name="propEntityArtifactDep">
+    <xs:complexContent>
+      <xs:extension base="tc:propEntity">
+        <xs:sequence>
+          <xs:element name="source-buildType" type="tc:buildType" minOccurs="0"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="propEntitiesAgentRequirement">
+    <xs:sequence>
+      <xs:element ref="tc:agent-requirement" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+    <xs:attribute name="count" type="xs:int"/>
+  </xs:complexType>
+
+  <xs:complexType name="propEntityAgentRequirement">
+    <xs:complexContent>
+      <xs:extension base="tc:propEntity">
+        <xs:sequence/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="builds">
+    <xs:sequence>
+      <xs:element ref="tc:build" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+    <xs:attribute name="count" type="xs:int"/>
+    <xs:attribute name="href" type="xs:string"/>
+    <xs:attribute name="nextHref" type="xs:string"/>
+    <xs:attribute name="prevHref" type="xs:string"/>
+  </xs:complexType>
+
+  <xs:complexType name="build">
+    <xs:sequence>
+      <xs:element name="statusText" type="xs:string" minOccurs="0"/>
+      <xs:element ref="tc:buildType" minOccurs="0"/>
+      <xs:element name="comment" type="tc:comment" default="" minOccurs="0"/>
+      <xs:element ref="tc:tags" minOccurs="0"/>
+      <xs:element name="pinInfo" type="tc:comment" minOccurs="0"/>
+      <xs:element ref="tc:user" minOccurs="0"/>
+      <xs:element name="startEstimate" type="xs:string" minOccurs="0"/>
+      <xs:element name="waitReason" type="xs:string" minOccurs="0"/>
+      <xs:element name="running-info" type="tc:runningBuildInfo" minOccurs="0"/>
+      <xs:element name="canceledInfo" type="tc:comment" minOccurs="0"/>
+      <xs:element name="queuedDate" type="xs:string" minOccurs="0"/>
+      <xs:element name="startDate" type="xs:string" minOccurs="0"/>
+      <xs:element name="finishDate" type="xs:string" minOccurs="0"/>
+      <xs:element name="triggered" type="tc:triggeredBy" minOccurs="0"/>
+      <xs:element name="lastChanges" type="tc:changes" minOccurs="0"/>
+      <xs:element ref="tc:changes" minOccurs="0"/>
+      <xs:element name="revisions" type="tc:revisions" minOccurs="0"/>
+      <xs:element ref="tc:agent" minOccurs="0"/>
+      <xs:element name="compatibleAgents" type="tc:agents-ref" minOccurs="0"/>
+      <xs:element ref="tc:testOccurrences" minOccurs="0"/>
+      <xs:element ref="tc:problemOccurrences" minOccurs="0"/>
+      <xs:element name="artifacts" type="tc:files" minOccurs="0"/>
+      <xs:element name="relatedIssues" type="tc:issueUsages" minOccurs="0"/>
+      <xs:element ref="tc:properties" minOccurs="0"/>
+      <xs:element name="attributes" type="tc:entries" minOccurs="0"/>
+      <xs:element name="statistics" type="tc:properties" minOccurs="0"/>
+      <xs:element name="snapshot-dependencies" type="tc:builds" minOccurs="0"/>
+      <xs:element name="artifact-dependencies" type="tc:builds" minOccurs="0"/>
+      <xs:element name="custom-artifact-dependencies" type="tc:propEntitiesArtifactDep" minOccurs="0"/>
+      <xs:element name="triggeringOptions" type="tc:buildTriggeringOptions" minOccurs="0"/>
+    </xs:sequence>
+    <xs:attribute name="id" type="xs:long"/>
+    <xs:attribute name="taskId" type="xs:long"/>
+    <xs:attribute name="buildTypeId" type="xs:string"/>
+    <xs:attribute name="buildTypeInternalId" type="xs:string"/>
+    <xs:attribute name="number" type="xs:string"/>
+    <xs:attribute name="status" type="xs:string"/>
+    <xs:attribute name="state" type="xs:string"/>
+    <xs:attribute name="running" type="xs:boolean"/>
+    <xs:attribute name="failedToStart" type="xs:boolean"/>
+    <xs:attribute name="personal" type="xs:boolean"/>
+    <xs:attribute name="percentageComplete" type="xs:int"/>
+    <xs:attribute name="branchName" type="xs:string"/>
+    <xs:attribute name="defaultBranch" type="xs:boolean"/>
+    <xs:attribute name="unspecifiedBranch" type="xs:boolean"/>
+    <xs:attribute name="history" type="xs:boolean"/>
+    <xs:attribute name="pinned" type="xs:boolean"/>
+    <xs:attribute name="href" type="xs:string"/>
+    <xs:attribute name="webUrl" type="xs:string"/>
+    <xs:attribute name="locator" type="xs:string"/>
+  </xs:complexType>
+
+  <xs:complexType name="comment">
+    <xs:sequence>
+      <xs:element ref="tc:user" minOccurs="0"/>
+      <xs:element name="timestamp" type="xs:string" minOccurs="0"/>
+      <xs:element name="text" type="xs:string" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="user">
+    <xs:sequence>
+      <xs:element ref="tc:properties" minOccurs="0"/>
+      <xs:element ref="tc:roles" minOccurs="0"/>
+      <xs:element ref="tc:groups" minOccurs="0"/>
+    </xs:sequence>
+    <xs:attribute name="username" type="xs:string"/>
+    <xs:attribute name="name" type="xs:string"/>
+    <xs:attribute name="id" type="xs:long"/>
+    <xs:attribute name="email" type="xs:string"/>
+    <xs:attribute name="lastLogin" type="xs:string"/>
+    <xs:attribute name="password" type="xs:string"/>
+    <xs:attribute name="href" type="xs:string"/>
+    <xs:attribute name="realm" type="xs:string"/>
+  </xs:complexType>
+
+  <xs:complexType name="roleAssignments">
+    <xs:sequence>
+      <xs:element ref="tc:role" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="roleAssignment">
+    <xs:sequence/>
+    <xs:attribute name="roleId" type="xs:string"/>
+    <xs:attribute name="scope" type="xs:string"/>
+    <xs:attribute name="href" type="xs:string"/>
+  </xs:complexType>
+
+  <xs:complexType name="groups">
+    <xs:sequence>
+      <xs:element ref="tc:group" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+    <xs:attribute name="count" type="xs:int"/>
+  </xs:complexType>
+
+  <xs:complexType name="group">
+    <xs:sequence>
+      <xs:element name="parent-groups" type="tc:groups" minOccurs="0"/>
+      <xs:element name="child-groups" type="tc:groups" minOccurs="0"/>
+      <xs:element ref="tc:users" minOccurs="0"/>
+      <xs:element ref="tc:roles" minOccurs="0"/>
+      <xs:element ref="tc:properties" minOccurs="0"/>
+    </xs:sequence>
+    <xs:attribute name="key" type="xs:string"/>
+    <xs:attribute name="name" type="xs:string"/>
+    <xs:attribute name="href" type="xs:string"/>
+    <xs:attribute name="description" type="xs:string"/>
+  </xs:complexType>
+
+  <xs:complexType name="users">
+    <xs:sequence>
+      <xs:element ref="tc:user" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+    <xs:attribute name="count" type="xs:int"/>
+  </xs:complexType>
+
+  <xs:complexType name="tags">
+    <xs:sequence>
+      <xs:element ref="tc:tag" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+    <xs:attribute name="count" type="xs:int"/>
+  </xs:complexType>
+
+  <xs:complexType name="tag">
+    <xs:sequence>
+      <xs:element name="owner" type="tc:user" minOccurs="0"/>
+    </xs:sequence>
+    <xs:attribute name="name" type="xs:string"/>
+    <xs:attribute name="private" type="xs:boolean"/>
+  </xs:complexType>
+
+  <xs:complexType name="runningBuildInfo">
+    <xs:sequence/>
+    <xs:attribute name="percentageComplete" type="xs:int"/>
+    <xs:attribute name="elapsedSeconds" type="xs:long" use="required"/>
+    <xs:attribute name="estimatedTotalSeconds" type="xs:long"/>
+    <xs:attribute name="currentStageText" type="xs:string"/>
+    <xs:attribute name="outdated" type="xs:boolean" use="required"/>
+    <xs:attribute name="probablyHanging" type="xs:boolean" use="required"/>
+  </xs:complexType>
+
+  <xs:complexType name="triggeredBy">
+    <xs:sequence>
+      <xs:element ref="tc:user" minOccurs="0"/>
+      <xs:element ref="tc:buildType" minOccurs="0"/>
+      <xs:element ref="tc:properties" minOccurs="0"/>
+    </xs:sequence>
+    <xs:attribute name="type" type="xs:string"/>
+    <xs:attribute name="details" type="xs:string"/>
+    <xs:attribute name="date" type="xs:string"/>
+    <xs:attribute name="rawValue" type="xs:string"/>
+  </xs:complexType>
+
+  <xs:complexType name="changes">
+    <xs:sequence>
+      <xs:element ref="tc:change" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+    <xs:attribute name="count" type="xs:int"/>
+    <xs:attribute name="href" type="xs:string"/>
+    <xs:attribute name="nextHref" type="xs:string"/>
+    <xs:attribute name="prevHref" type="xs:string"/>
+  </xs:complexType>
+
+  <xs:complexType name="change">
+    <xs:sequence>
+      <xs:element name="comment" type="xs:string" minOccurs="0"/>
+      <xs:element ref="tc:user" minOccurs="0"/>
+      <xs:element name="files" type="tc:fileChanges" minOccurs="0"/>
+      <xs:element name="vcsRootInstance" type="tc:vcsRootInstance" minOccurs="0"/>
+    </xs:sequence>
+    <xs:attribute name="id" type="xs:long"/>
+    <xs:attribute name="version" type="xs:string"/>
+    <xs:attribute name="username" type="xs:string"/>
+    <xs:attribute name="date" type="xs:string"/>
+    <xs:attribute name="personal" type="xs:boolean"/>
+    <xs:attribute name="href" type="xs:string"/>
+    <xs:attribute name="webUrl" type="xs:string"/>
+    <xs:attribute name="locator" type="xs:string"/>
+  </xs:complexType>
+
+  <xs:complexType name="fileChanges">
+    <xs:sequence>
+      <xs:element name="file" type="tc:fileChange" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="fileChange">
+    <xs:sequence/>
+    <xs:attribute name="before-revision" type="xs:string"/>
+    <xs:attribute name="after-revision" type="xs:string"/>
+    <xs:attribute name="file" type="xs:string"/>
+    <xs:attribute name="relative-file" type="xs:string"/>
+  </xs:complexType>
+
+  <xs:complexType name="revisions">
+    <xs:sequence>
+      <xs:element name="revision" type="tc:revision" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+    <xs:attribute name="count" type="xs:int"/>
+  </xs:complexType>
+
+  <xs:complexType name="revision">
+    <xs:sequence>
+      <xs:element ref="tc:vcsRootInstance" minOccurs="0"/>
+    </xs:sequence>
+    <xs:attribute name="version" type="xs:string"/>
+    <xs:attribute name="internalVersion" type="xs:string"/>
+  </xs:complexType>
+
+  <xs:complexType name="agent">
+    <xs:sequence>
+      <xs:element ref="tc:properties" minOccurs="0"/>
+      <xs:element name="pool" type="tc:agentPool" minOccurs="0"/>
+      <xs:element name="compatibleBuildTypes" type="tc:buildTypes" minOccurs="0"/>
+      <xs:element name="incompatibleBuildTypes" type="tc:compatibilities" minOccurs="0"/>
+    </xs:sequence>
+    <xs:attribute name="id" type="xs:int"/>
+    <xs:attribute name="name" type="xs:string"/>
+    <xs:attribute name="typeId" type="xs:int"/>
+    <xs:attribute name="connected" type="xs:boolean"/>
+    <xs:attribute name="enabled" type="xs:boolean"/>
+    <xs:attribute name="authorized" type="xs:boolean"/>
+    <xs:attribute name="uptodate" type="xs:boolean"/>
+    <xs:attribute name="ip" type="xs:string"/>
+    <xs:attribute name="protocol" type="xs:string"/>
+    <xs:attribute name="href" type="xs:string"/>
+    <xs:attribute name="locator" type="xs:string"/>
+  </xs:complexType>
+
+  <xs:complexType name="agentPool">
+    <xs:sequence>
+      <xs:element ref="tc:projects" minOccurs="0"/>
+      <xs:element ref="tc:agents" minOccurs="0"/>
+    </xs:sequence>
+    <xs:attribute name="id" type="xs:int"/>
+    <xs:attribute name="name" type="xs:string"/>
+    <xs:attribute name="href" type="xs:string"/>
+    <xs:attribute name="locator" type="xs:string"/>
+  </xs:complexType>
+
+  <xs:complexType name="agents-ref">
+    <xs:sequence>
+      <xs:element ref="tc:agent" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+    <xs:attribute name="count" type="xs:int"/>
+    <xs:attribute name="nextHref" type="xs:string"/>
+    <xs:attribute name="prevHref" type="xs:string"/>
+    <xs:attribute name="href" type="xs:string"/>
+  </xs:complexType>
+
+  <xs:complexType name="compatibilities">
+    <xs:sequence>
+      <xs:element ref="tc:compatibility" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+    <xs:attribute name="count" type="xs:int"/>
+  </xs:complexType>
+
+  <xs:complexType name="compatibility">
+    <xs:sequence>
+      <xs:element ref="tc:agent" minOccurs="0"/>
+      <xs:element ref="tc:buildType" minOccurs="0"/>
+      <xs:element name="unmetRequirements" type="tc:requirements" minOccurs="0"/>
+    </xs:sequence>
+    <xs:attribute name="compatible" type="xs:boolean"/>
+  </xs:complexType>
+
+  <xs:complexType name="requirements">
+    <xs:sequence/>
+    <xs:attribute name="description" type="xs:string"/>
+  </xs:complexType>
+
+  <xs:complexType name="testOccurrences">
+    <xs:complexContent>
+      <xs:extension base="tc:occurrencesSummary">
+        <xs:sequence>
+          <xs:element ref="tc:testOccurrence" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+        <xs:attribute name="count" type="xs:int"/>
+        <xs:attribute name="href" type="xs:string"/>
+        <xs:attribute name="nextHref" type="xs:string"/>
+        <xs:attribute name="prevHref" type="xs:string"/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="occurrencesSummary">
+    <xs:sequence/>
+    <xs:attribute name="passed" type="xs:int"/>
+    <xs:attribute name="failed" type="xs:int"/>
+    <xs:attribute name="newFailed" type="xs:int"/>
+    <xs:attribute name="ignored" type="xs:int"/>
+    <xs:attribute name="muted" type="xs:int"/>
+  </xs:complexType>
+
+  <xs:complexType name="testOccurrence">
+    <xs:sequence>
+      <xs:element name="ignoreDetails" type="xs:string" minOccurs="0"/>
+      <xs:element name="details" type="xs:string" minOccurs="0"/>
+      <xs:element ref="tc:test" minOccurs="0"/>
+      <xs:element name="mute" type="tc:mute" minOccurs="0"/>
+      <xs:element ref="tc:build" minOccurs="0"/>
+      <xs:element name="firstFailed" type="tc:testOccurrence" minOccurs="0"/>
+      <xs:element name="nextFixed" type="tc:testOccurrence" minOccurs="0"/>
+    </xs:sequence>
+    <xs:attribute name="id" type="xs:string"/>
+    <xs:attribute name="name" type="xs:string"/>
+    <xs:attribute name="status" type="xs:string"/>
+    <xs:attribute name="ignored" type="xs:boolean"/>
+    <xs:attribute name="duration" type="xs:int"/>
+    <xs:attribute name="muted" type="xs:boolean"/>
+    <xs:attribute name="currentlyMuted" type="xs:boolean"/>
+    <xs:attribute name="currentlyInvestigated" type="xs:boolean"/>
+    <xs:attribute name="href" type="xs:string"/>
+  </xs:complexType>
+
+  <xs:complexType name="test">
+    <xs:sequence>
+      <xs:element ref="tc:mutes" minOccurs="0"/>
+      <xs:element ref="tc:investigations" minOccurs="0"/>
+      <xs:element ref="tc:testOccurrences" minOccurs="0"/>
+    </xs:sequence>
+    <xs:attribute name="id" type="xs:long"/>
+    <xs:attribute name="name" type="xs:string"/>
+    <xs:attribute name="href" type="xs:string"/>
+  </xs:complexType>
+
+  <xs:complexType name="mutes">
+    <xs:sequence>
+      <xs:element name="mute" type="tc:mute" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+    <xs:attribute name="count" type="xs:int"/>
+    <xs:attribute name="nextHref" type="xs:string"/>
+    <xs:attribute name="prevHref" type="xs:string"/>
+    <xs:attribute name="href" type="xs:string"/>
+  </xs:complexType>
+
+  <xs:complexType name="mute">
+    <xs:sequence>
+      <xs:element name="assignment" type="tc:comment" minOccurs="0"/>
+      <xs:element name="scope" type="tc:problemScope" minOccurs="0"/>
+      <xs:element name="target" type="tc:problemTarget" minOccurs="0"/>
+      <xs:element name="resolution" type="tc:resolution" minOccurs="0"/>
+    </xs:sequence>
+    <xs:attribute name="id" type="xs:int"/>
+  </xs:complexType>
+
+  <xs:complexType name="problemScope">
+    <xs:sequence>
+      <xs:element ref="tc:project" minOccurs="0"/>
+      <xs:element ref="tc:buildTypes" minOccurs="0"/>
+      <xs:element ref="tc:buildType" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="problemTarget">
+    <xs:sequence>
+      <xs:element ref="tc:tests" minOccurs="0"/>
+      <xs:element ref="tc:problems" minOccurs="0"/>
+    </xs:sequence>
+    <xs:attribute name="anyProblem" type="xs:boolean"/>
+  </xs:complexType>
+
+  <xs:complexType name="tests">
+    <xs:sequence>
+      <xs:element ref="tc:test" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+    <xs:attribute name="count" type="xs:int"/>
+    <xs:attribute name="nextHref" type="xs:string"/>
+    <xs:attribute name="prevHref" type="xs:string"/>
+  </xs:complexType>
+
+  <xs:complexType name="problems">
+    <xs:sequence>
+      <xs:element ref="tc:problem" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+    <xs:attribute name="count" type="xs:int"/>
+    <xs:attribute name="nextHref" type="xs:string"/>
+    <xs:attribute name="prevHref" type="xs:string"/>
+  </xs:complexType>
+
+  <xs:complexType name="problem">
+    <xs:sequence>
+      <xs:element ref="tc:mutes" minOccurs="0"/>
+      <xs:element ref="tc:investigations" minOccurs="0"/>
+      <xs:element ref="tc:problemOccurrences" minOccurs="0"/>
+    </xs:sequence>
+    <xs:attribute name="id" type="xs:string"/>
+    <xs:attribute name="type" type="xs:string"/>
+    <xs:attribute name="identity" type="xs:string"/>
+    <xs:attribute name="href" type="xs:string"/>
+  </xs:complexType>
+
+  <xs:complexType name="investigations">
+    <xs:sequence>
+      <xs:element ref="tc:investigation" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+    <xs:attribute name="count" type="xs:int"/>
+    <xs:attribute name="nextHref" type="xs:string"/>
+    <xs:attribute name="prevHref" type="xs:string"/>
+    <xs:attribute name="href" type="xs:string"/>
+  </xs:complexType>
+
+  <xs:complexType name="investigation">
+    <xs:sequence>
+      <xs:element name="assignee" type="tc:user" minOccurs="0"/>
+      <xs:element name="assignment" type="tc:comment" minOccurs="0"/>
+      <xs:element name="scope" type="tc:problemScope" minOccurs="0"/>
+      <xs:element name="target" type="tc:problemTarget" minOccurs="0"/>
+      <xs:element name="resolution" type="tc:resolution" minOccurs="0"/>
+      <xs:element name="responsible" type="tc:user" minOccurs="0"/>
+    </xs:sequence>
+    <xs:attribute name="id" type="xs:string"/>
+    <xs:attribute name="state" type="xs:string"/>
+    <xs:attribute name="href" type="xs:string"/>
+  </xs:complexType>
+
+  <xs:complexType name="resolution">
+    <xs:sequence>
+      <xs:element name="time" type="xs:string" minOccurs="0"/>
+    </xs:sequence>
+    <xs:attribute name="type" type="xs:string"/>
+  </xs:complexType>
+
+  <xs:complexType name="problemOccurrences">
+    <xs:complexContent>
+      <xs:extension base="tc:occurrencesSummary">
+        <xs:sequence>
+          <xs:element ref="tc:problemOccurrence" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+        <xs:attribute name="count" type="xs:int"/>
+        <xs:attribute name="href" type="xs:string"/>
+        <xs:attribute name="nextHref" type="xs:string"/>
+        <xs:attribute name="prevHref" type="xs:string"/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="problemOccurrence">
+    <xs:sequence>
+      <xs:element name="details" type="xs:string" minOccurs="0"/>
+      <xs:element name="additionalData" type="xs:string" minOccurs="0"/>
+      <xs:element ref="tc:problem" minOccurs="0"/>
+      <xs:element name="mute" type="tc:mute" minOccurs="0"/>
+      <xs:element ref="tc:build" minOccurs="0"/>
+    </xs:sequence>
+    <xs:attribute name="id" type="xs:string"/>
+    <xs:attribute name="type" type="xs:string"/>
+    <xs:attribute name="identity" type="xs:string"/>
+    <xs:attribute name="href" type="xs:string"/>
+    <xs:attribute name="muted" type="xs:boolean"/>
+    <xs:attribute name="currentlyInvestigated" type="xs:boolean"/>
+    <xs:attribute name="currentlyMuted" type="xs:boolean"/>
+  </xs:complexType>
+
+  <xs:complexType name="files">
+    <xs:sequence>
+      <xs:element ref="tc:file" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+    <xs:attribute name="count" type="xs:int"/>
+    <xs:attribute name="href" type="xs:string"/>
+  </xs:complexType>
+
+  <xs:complexType name="file">
+    <xs:sequence>
+      <xs:element name="parent" type="tc:file" minOccurs="0"/>
+      <xs:element name="content" type="tc:HReference" minOccurs="0"/>
+      <xs:element name="children" type="tc:files" minOccurs="0"/>
+    </xs:sequence>
+    <xs:attribute name="name" type="xs:string"/>
+    <xs:attribute name="fullName" type="xs:string"/>
+    <xs:attribute name="size" type="xs:long"/>
+    <xs:attribute name="modificationTime" type="xs:string"/>
+    <xs:attribute name="href" type="xs:string"/>
+  </xs:complexType>
+
+  <xs:complexType name="HReference">
+    <xs:sequence/>
+    <xs:attribute name="href" type="xs:string"/>
+  </xs:complexType>
+
+  <xs:complexType name="issueUsages">
+    <xs:sequence>
+      <xs:element name="issueUsage" type="tc:issueUsage" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+    <xs:attribute name="count" type="xs:int"/>
+    <xs:attribute name="href" type="xs:string"/>
+  </xs:complexType>
+
+  <xs:complexType name="issueUsage">
+    <xs:sequence>
+      <xs:element name="changes" type="tc:changes" default="" minOccurs="0"/>
+      <xs:element name="issue" type="tc:issue" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="issue">
+    <xs:sequence/>
+    <xs:attribute name="id" type="xs:string"/>
+    <xs:attribute name="url" type="xs:string"/>
+  </xs:complexType>
+
+  <xs:complexType name="entries">
+    <xs:sequence>
+      <xs:element ref="tc:entry" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+    <xs:attribute name="count" type="xs:long" use="required"/>
+  </xs:complexType>
+
+  <xs:complexType name="entry">
+    <xs:sequence/>
+    <xs:attribute name="name" type="xs:string"/>
+    <xs:attribute name="value" type="xs:string"/>
+  </xs:complexType>
+
+  <xs:complexType name="buildTriggeringOptions">
+    <xs:sequence>
+      <xs:element name="rebuildDependencies" type="tc:buildTypes" minOccurs="0"/>
+    </xs:sequence>
+    <xs:attribute name="cleanSources" type="xs:boolean"/>
+    <xs:attribute name="rebuildAllDependencies" type="xs:boolean"/>
+    <xs:attribute name="queueAtTop" type="xs:boolean"/>
+  </xs:complexType>
+
+  <xs:complexType name="agentPools">
+    <xs:sequence>
+      <xs:element ref="tc:agentPool" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+    <xs:attribute name="count" type="xs:int"/>
+    <xs:attribute name="href" type="xs:string"/>
+    <xs:attribute name="nextHref" type="xs:string"/>
+    <xs:attribute name="prevHref" type="xs:string"/>
+  </xs:complexType>
+
+  <xs:complexType name="branches">
+    <xs:sequence>
+      <xs:element ref="tc:branch" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="branch">
+    <xs:sequence/>
+    <xs:attribute name="name" type="xs:string"/>
+    <xs:attribute name="default" type="xs:boolean"/>
+    <xs:attribute name="unspecified" type="xs:boolean"/>
+  </xs:complexType>
+
+  <xs:complexType name="items">
+    <xs:sequence>
+      <xs:element name="item" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="issues">
+    <xs:sequence>
+      <xs:element name="issue" type="tc:issue" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="server">
+    <xs:sequence>
+      <xs:element name="projects" type="tc:HReference" minOccurs="0"/>
+      <xs:element name="vcsRoots" type="tc:HReference" minOccurs="0"/>
+      <xs:element name="builds" type="tc:HReference" minOccurs="0"/>
+      <xs:element name="users" type="tc:HReference" minOccurs="0"/>
+      <xs:element name="userGroups" type="tc:HReference" minOccurs="0"/>
+      <xs:element name="agents" type="tc:HReference" minOccurs="0"/>
+      <xs:element name="buildQueue" type="tc:HReference" minOccurs="0"/>
+      <xs:element name="agentPools" type="tc:HReference" minOccurs="0"/>
+    </xs:sequence>
+    <xs:attribute name="version" type="xs:string"/>
+    <xs:attribute name="versionMajor" type="xs:byte" use="required"/>
+    <xs:attribute name="versionMinor" type="xs:byte" use="required"/>
+    <xs:attribute name="startTime" type="xs:string"/>
+    <xs:attribute name="currentTime" type="xs:string"/>
+    <xs:attribute name="buildNumber" type="xs:string"/>
+    <xs:attribute name="buildDate" type="xs:string"/>
+    <xs:attribute name="internalId" type="xs:string"/>
+    <xs:attribute name="webUrl" type="xs:string"/>
+  </xs:complexType>
+
+  <xs:complexType name="newBuildTypeDescription">
+    <xs:complexContent>
+      <xs:extension base="tc:copyOptionsDescription">
+        <xs:sequence>
+          <xs:element name="sourceBuildType" type="tc:buildType" minOccurs="0"/>
+        </xs:sequence>
+        <xs:attribute name="name" type="xs:string"/>
+        <xs:attribute name="id" type="xs:string"/>
+        <xs:attribute name="sourceBuildTypeLocator" type="xs:string"/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="copyOptionsDescription">
+    <xs:sequence>
+      <xs:element name="projectsIdsMap" type="tc:properties" minOccurs="0"/>
+      <xs:element name="buildTypesIdsMap" type="tc:properties" minOccurs="0"/>
+      <xs:element name="vcsRootsIdsMap" type="tc:properties" minOccurs="0"/>
+    </xs:sequence>
+    <xs:attribute name="copyAllAssociatedSettings" type="xs:boolean"/>
+  </xs:complexType>
+
+  <xs:complexType name="newProjectDescription">
+    <xs:complexContent>
+      <xs:extension base="tc:copyOptionsDescription">
+        <xs:sequence>
+          <xs:element name="sourceProject" type="tc:project" minOccurs="0"/>
+          <xs:element name="parentProject" type="tc:project" minOccurs="0"/>
+        </xs:sequence>
+        <xs:attribute name="name" type="xs:string"/>
+        <xs:attribute name="id" type="xs:string"/>
+        <xs:attribute name="sourceProjectLocator" type="xs:string"/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="vcsLabelingOptions">
+    <xs:sequence>
+      <xs:element name="branchFilter" type="xs:string" minOccurs="0"/>
+      <xs:element name="vcsRoots" type="tc:vcsRoots" minOccurs="0"/>
+    </xs:sequence>
+    <xs:attribute name="labelName" type="xs:string"/>
+    <xs:attribute name="type" type="xs:string"/>
+  </xs:complexType>
+
+  <xs:complexType name="buildCancelRequest">
+    <xs:sequence/>
+    <xs:attribute name="comment" type="xs:string"/>
+    <xs:attribute name="readdIntoQueue" type="xs:boolean" use="required"/>
+  </xs:complexType>
+
+  <xs:complexType name="pluginInfo">
+    <xs:sequence>
+      <xs:element name="parameters" type="tc:properties" minOccurs="0"/>
+    </xs:sequence>
+    <xs:attribute name="name" type="xs:string"/>
+    <xs:attribute name="displayName" type="xs:string"/>
+    <xs:attribute name="version" type="xs:string"/>
+    <xs:attribute name="loadPath" type="xs:string"/>
+  </xs:complexType>
+
+
+  <xs:complexType name="pluginInfos">
+    <xs:sequence>
+      <xs:element ref="tc:plugin" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+    <xs:attribute name="count" type="xs:int"/>
+  </xs:complexType>
+</xs:schema>
+

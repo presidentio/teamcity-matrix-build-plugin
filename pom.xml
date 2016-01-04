@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>com.presidentio.teamcity</groupId>
+    <artifactId>matrix-build</artifactId>
+    <version>1.0.0-SNAPSHOT</version>
+    <packaging>pom</packaging>
+
+    <properties>
+        <teamcity.version>9.0.1</teamcity.version>
+        <java.version>1.7</java.version>
+        <maven.compiler.source>${java.version}</maven.compiler.source>
+        <maven.compiler.target>${java.version}</maven.compiler.target>
+        <maven-assembly-plugin.version>2.5.5</maven-assembly-plugin.version>
+        <com.google.code.maven-replacer-plugin>1.5.2</com.google.code.maven-replacer-plugin>
+
+        <jackson-databind.version>2.6.4</jackson-databind.version>
+        <cxf-rt-rs-client.version>3.1.4</cxf-rt-rs-client.version>
+        <spring.version>4.0.5.RELEASE</spring.version>
+        <junit.version>4.12</junit.version>
+    </properties>
+
+    <repositories>
+        <repository>
+            <id>JetBrains</id>
+            <url>http://repository.jetbrains.com/all</url>
+        </repository>
+    </repositories>
+
+    <modules>
+        <module>teamcity-rest-client</module>
+        <module>matrix-build-common</module>
+        <module>matrix-build-server</module>
+        <module>matrix-build-agent</module>
+        <module>matrix-build-assembly</module>
+    </modules>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>com.presidentio.teamcity</groupId>
+                <artifactId>teamcity-rest-client</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.presidentio.teamcity</groupId>
+                <artifactId>matrix-build-common</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.presidentio.teamcity</groupId>
+                <artifactId>matrix-build-server</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.presidentio.teamcity</groupId>
+                <artifactId>matrix-build-agent</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.fasterxml.jackson.core</groupId>
+                <artifactId>jackson-databind</artifactId>
+                <version>${jackson-databind.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.cxf</groupId>
+                <artifactId>cxf-rt-rs-client</artifactId>
+                <version>${cxf-rt-rs-client.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-context</artifactId>
+                <version>${spring.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>junit</groupId>
+                <artifactId>junit</artifactId>
+                <version>${junit.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.jetbrains.teamcity</groupId>
+                <artifactId>tests-support</artifactId>
+                <version>${teamcity.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.jetbrains.teamcity</groupId>
+                <artifactId>agent-api</artifactId>
+                <version>${teamcity.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.jetbrains.teamcity</groupId>
+                <artifactId>server-web-api</artifactId>
+                <version>${teamcity.version}</version>
+                <type>war</type>
+            </dependency>
+            <dependency>
+                <groupId>org.jetbrains.teamcity</groupId>
+                <artifactId>server-api</artifactId>
+                <version>${teamcity.version}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+    <build>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <artifactId>maven-assembly-plugin</artifactId>
+                    <version>${maven-assembly-plugin.version}</version>
+                </plugin>
+                <plugin>
+                    <groupId>com.google.code.maven-replacer-plugin</groupId>
+                    <artifactId>replacer</artifactId>
+                    <version>${com.google.code.maven-replacer-plugin}</version>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+    </build>
+</project>

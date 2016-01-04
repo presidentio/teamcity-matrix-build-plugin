@@ -1,0 +1,31 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+    <bean id="cxf" class="org.apache.cxf.bus.spring.SpringBus">
+        <property name="features">
+            <list>
+                <ref bean="transformFeature"/>
+            </list>
+        </property>
+    </bean>
+    <bean id="transformFeature" class="org.apache.cxf.feature.StaxTransformFeature">
+        <property name="inTransformElements">
+            <map>
+                <entry key="vcs-root-entries" value="{http://dto.rest.teamcity.presidentio.com}vcsRootEntries"/>
+                <entry key="vcs-root-entry" value="{http://dto.rest.teamcity.presidentio.com}vcsRootEntry"/>
+                <entry key="vcs-root" value="{http://dto.rest.teamcity.presidentio.com}vcsRoot"/>
+                <entry key="*" value="{http://dto.rest.teamcity.presidentio.com}*"/>
+            </map>
+        </property>
+        <property name="outTransformElements">
+            <map>
+                <entry key="{http://dto.rest.teamcity.presidentio.com}vcs-root-entries" value="vcsRootEntries"/>
+                <entry key="{http://dto.rest.teamcity.presidentio.com}vcs-root-entry" value="vcsRootEntry"/>
+                <entry key="{http://dto.rest.teamcity.presidentio.com}vcs-root-entry" value="vcsRoot"/>
+                <entry key="{http://dto.rest.teamcity.presidentio.com}*" value="*"/>
+            </map>
+        </property>
+    </bean>
+</beans>
