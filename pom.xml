@@ -23,7 +23,7 @@
     </properties>
 
     <scm>
-        <developerConnection>scm:git:https://github.com/presidentio/teamcity-matrix-build-plugin.git</developerConnection>
+        <developerConnection>scm:git:git@github.com:presidentio/teamcity-matrix-build-plugin.git</developerConnection>
     </scm>
 
     <repositories>
