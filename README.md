@@ -1,10 +1,10 @@
-# matrix-build
+# teamcity-matrix-build-plugin
 
 [![Build Status](https://travis-ci.org/presidentio/teamcity-matrix-build-plugin.svg?branch=master)](https://travis-ci.org/presidentio/teamcity-matrix-build-plugin)
 
 ## Overview
 
-This plugin can run builds with matrix configuration. [Jenkins alternative](https://wiki.jenkins-ci.org/display/JENKINS/Building+a+matrix+project).
+This teamcity plugin can run builds with matrix configuration. [Jenkins alternative](https://wiki.jenkins-ci.org/display/JENKINS/Building+a+matrix+project).
 A matrix-build runner is useful when you want to run you build configuration with different combinations of parameters. 
 In usual case you are creating multiple build configurations with the same steps and change specific parameters.
 Using this plugin you can just specify possible values for each parameter and run one build, which will trigger child builds with each possible combination of parameters.

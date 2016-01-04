@@ -14,12 +14,17 @@
         <maven.compiler.target>${java.version}</maven.compiler.target>
         <maven-assembly-plugin.version>2.5.5</maven-assembly-plugin.version>
         <com.google.code.maven-replacer-plugin>1.5.2</com.google.code.maven-replacer-plugin>
+        <maven-release-plugin>2.5.3</maven-release-plugin>
 
         <jackson-databind.version>2.6.4</jackson-databind.version>
         <cxf-rt-rs-client.version>3.1.4</cxf-rt-rs-client.version>
         <spring.version>4.0.5.RELEASE</spring.version>
         <junit.version>4.12</junit.version>
     </properties>
+
+    <scm>
+        <developerConnection>scm:git:https://github.com/presidentio/teamcity-matrix-build-plugin.git</developerConnection>
+    </scm>
 
     <repositories>
         <repository>
@@ -104,6 +109,12 @@
     </dependencyManagement>
 
     <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-release-plugin</artifactId>
+            </plugin>
+        </plugins>
         <pluginManagement>
             <plugins>
                 <plugin>
@@ -114,6 +125,11 @@
                     <groupId>com.google.code.maven-replacer-plugin</groupId>
                     <artifactId>replacer</artifactId>
                     <version>${com.google.code.maven-replacer-plugin}</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-release-plugin</artifactId>
+                    <version>${maven-release-plugin}</version>
                 </plugin>
             </plugins>
         </pluginManagement>
