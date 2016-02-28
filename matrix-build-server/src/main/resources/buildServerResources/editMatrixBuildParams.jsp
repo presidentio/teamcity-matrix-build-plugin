@@ -33,7 +33,7 @@
                 </c:forEach>
             </props:selectProperty>
             <span class="error" id="error_${settings.PROP_BUILD_TYPE_ID}"></span>
-            <span class="smallNote">Build configuration tp run with custom parameters</span>
+            <span class="smallNote">Build configuration to run with custom parameters</span>
         </td>
     </tr>
     <tr>
@@ -45,7 +45,7 @@
                                      className="longField"
                                      expanded="true"/>
             <span class="error" id="error_${settings.PROP_BUILD_PARAMETERS}"></span>
-            <span class="smallNote">A newline-separated list of properties with comma separated variants of value: &lt;parameter name&gt;=&lt;value1,value2,value3&gt;</span>
+            <span class="smallNote">A newline-separated list of properties with comma separated variants of value: &lt;parameter name&gt;=&lt;value1&gt;,&lt;value2&gt;,&lt;value3&gt;</span>
         </td>
     </tr>
     <tr>
@@ -70,6 +70,15 @@
     <props:hiddenProperty name="${settings.PROP_TEAMCITY_SERVER_USERNAME}" value="%system.teamcity.auth.userId%"/>
     <props:hiddenProperty name="${settings.PROP_TEAMCITY_SERVER_PASSWORD}" value="%system.teamcity.auth.password%"/>
     --%>
+
+    <tr class="advancedSetting">
+        <th><label for="${settings.PROP_ONLY_DIAGONAL}">Only diagonal: </label></th>
+        <td>
+            <props:checkboxProperty name="${settings.PROP_ONLY_DIAGONAL}"/>
+            <span class="error" id="error_${settings.PROP_ONLY_DIAGONAL}"></span>
+            <span class="smallNote">Use only diagonal combinations of parameters</span>
+        </td>
+    </tr>
 
     <tr class="advancedSetting">
         <th><label for="${settings.PROP_WAIT_BUILDS_FINISH}">Wait builds finish: </label></th>

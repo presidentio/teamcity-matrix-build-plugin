@@ -24,6 +24,7 @@ public class SettingsConst {
     public static final String PROP_TEAMCITY_SERVER_URL = "teamcity.server.url";
     public static final String PROP_TEAMCITY_SERVER_USERNAME = "teamcity.server.username";
     public static final String PROP_TEAMCITY_SERVER_PASSWORD = "teamcity.server.password";
+    public static final String PROP_ONLY_DIAGONAL = "only.diagonal";
     public static final String PROP_WAIT_BUILDS_FINISH = "wait.builds.finish";
 
     public String getPROP_BUILD_TYPE_ID() {
@@ -44,6 +45,10 @@ public class SettingsConst {
 
     public String getPROP_TEAMCITY_SERVER_PASSWORD() {
         return PROP_TEAMCITY_SERVER_PASSWORD;
+    }
+
+    public String getPROP_ONLY_DIAGONAL() {
+        return PROP_ONLY_DIAGONAL;
     }
 
     public String getPROP_WAIT_BUILDS_FINISH() {

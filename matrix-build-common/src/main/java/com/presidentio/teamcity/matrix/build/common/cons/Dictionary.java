@@ -27,5 +27,6 @@ public class Dictionary {
     public static final String ERROR_BUILD_TYPE_NOT_FOUND = "Unknown build type";
     public static final String ERROR_INVALID_PROPERTIES = "Invalid properties";
     public static final String ERROR_PROPERTIES_IS_EMPTY = "Must be at least one property";
+    public static final String ERROR_PROPERTIES_VALUES_COUNT = "Number of each property values should be the same";
 
 }

@@ -111,11 +111,18 @@ public class MatrixBuildProcess implements BuildProcess, Runnable {
             return;
         }
 
-        int buildCount = calcBuildCount(parameters);
+        boolean onlyDiagonal = Boolean.parseBoolean(buildRunnerContext.getRunnerParameters().get(SettingsConst.PROP_ONLY_DIAGONAL));
+        int buildCount = calcBuildCount(parameters, onlyDiagonal);
         String buildTypeId = buildRunnerContext.getRunnerParameters().get(SettingsConst.PROP_BUILD_TYPE_ID);
         List<com.presidentio.teamcity.matrix.build.common.dto.Build> builds = new ArrayList<>(buildCount);
         for (int buildNumber = 0; buildNumber < buildCount; buildNumber++) {
-            builds.add(startBuild(buildTypeId, buildNumber, parameters));
+            Map<String, String> buildParameters;
+            if (onlyDiagonal) {
+                buildParameters = getDiagonalBuildParameters(buildNumber, parameters);
+            } else {
+                buildParameters = getMatrixBuildParameters(buildNumber, parameters);
+            }
+            builds.add(startBuild(buildTypeId, buildNumber, buildParameters));
         }
 
         try {
@@ -142,8 +149,30 @@ public class MatrixBuildProcess implements BuildProcess, Runnable {
         return BuildStateConst.DELETED.equals(build.getState()) || BuildStateConst.FINISHED.equals(build.getState());
     }
 
+    private Map<String, String> getMatrixBuildParameters(int buildNumber, Map<String, String[]> parameters) {
+        int parametersIdentifier = buildNumber;
+        Map<String, String> buildParameters = new HashMap<>();
+        for (Map.Entry<String, String[]> entry : parameters.entrySet()) {
+            String key = entry.getKey();
+            String value = entry.getValue()[parametersIdentifier % entry.getValue().length];
+            parametersIdentifier /= entry.getValue().length;
+            buildParameters.put(key, value);
+        }
+        return buildParameters;
+    }
+
+    private Map<String, String> getDiagonalBuildParameters(int buildNumber, Map<String, String[]> parameters) {
+        Map<String, String> buildParameters = new HashMap<>();
+        for (Map.Entry<String, String[]> entry : parameters.entrySet()) {
+            String key = entry.getKey();
+            String value = entry.getValue()[buildNumber];
+            buildParameters.put(key, value);
+        }
+        return buildParameters;
+    }
+
     private com.presidentio.teamcity.matrix.build.common.dto.Build startBuild(String buildTypeId, Integer buildNumber,
-                                                                              Map<String, String[]> parameters) {
+                                                                              Map<String, String> parameters) {
         Build build = new Build();
 
         //set build type
@@ -153,17 +182,11 @@ public class MatrixBuildProcess implements BuildProcess, Runnable {
 
         //generate properties
         com.presidentio.teamcity.rest.dto.Properties childBuildProperties = new com.presidentio.teamcity.rest.dto.Properties();
-        int parametersIdentifier = buildNumber;
-        Map<String, String> reportBuildParameters = new HashMap<>();
-        for (Map.Entry<String, String[]> entry : parameters.entrySet()) {
-            String key = entry.getKey();
-            String value = entry.getValue()[parametersIdentifier % entry.getValue().length];
+        for (Map.Entry<String, String> stringStringEntry : parameters.entrySet()) {
             Property property = new Property();
-            property.setName(key);
-            property.setValue(value);
+            property.setName(stringStringEntry.getKey());
+            property.setValue(stringStringEntry.getValue());
             childBuildProperties.getProperty().add(property);
-            parametersIdentifier /= entry.getValue().length;
-            reportBuildParameters.put(key, value);
         }
         build.setProperties(childBuildProperties);
 
@@ -200,7 +223,7 @@ public class MatrixBuildProcess implements BuildProcess, Runnable {
 
         buildRunnerContext.getBuild().getBuildLogger().message("Build " + build.getId() + " is triggered with "
                 + "parameters " + childBuildProperties.toString());
-        return new com.presidentio.teamcity.matrix.build.common.dto.Build(build.getId(), reportBuildParameters);
+        return new com.presidentio.teamcity.matrix.build.common.dto.Build(build.getId(), parameters);
     }
 
     private void initRestResources() {
@@ -224,10 +247,13 @@ public class MatrixBuildProcess implements BuildProcess, Runnable {
         return parameters;
     }
 
-    private int calcBuildCount(Map<String, String[]> parameters) {
+    private int calcBuildCount(Map<String, String[]> parameters, boolean onlyDiagonal) {
         int buildCount = 1;
         for (String[] values : parameters.values()) {
             buildCount *= values.length;
+            if (onlyDiagonal) {
+                return buildCount;
+            }
         }
         return buildCount;
     }

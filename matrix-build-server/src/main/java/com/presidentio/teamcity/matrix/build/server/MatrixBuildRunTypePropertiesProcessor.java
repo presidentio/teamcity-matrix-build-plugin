@@ -51,12 +51,26 @@ public class MatrixBuildRunTypePropertiesProcessor implements PropertiesProcesso
             }
         }
 
+        boolean onlyDiagonal = Boolean.valueOf(map.get(SettingsConst.PROP_ONLY_DIAGONAL));
         String parameters = map.get(SettingsConst.PROP_BUILD_PARAMETERS);
         Properties properties = new Properties();
         try {
             properties.load(new StringReader(parameters));
             if (properties.isEmpty()) {
                 result.add(new InvalidProperty(SettingsConst.PROP_BUILD_PARAMETERS, Dictionary.ERROR_PROPERTIES_IS_EMPTY));
+            }
+            if (onlyDiagonal) {
+                int propCount = -1;
+                for (String propName : properties.stringPropertyNames()) {
+                    if (propCount == -1) {
+                        propCount = properties.getProperty(propName).split(",").length;
+                    } else {
+                        if (propCount != properties.getProperty(propName).split(",").length) {
+                            result.add(new InvalidProperty(SettingsConst.PROP_BUILD_PARAMETERS, Dictionary.ERROR_PROPERTIES_VALUES_COUNT));
+                            break;
+                        }
+                    }
+                }
             }
         } catch (IOException e) {
             result.add(new InvalidProperty(SettingsConst.PROP_BUILD_PARAMETERS, Dictionary.ERROR_INVALID_PROPERTIES));
