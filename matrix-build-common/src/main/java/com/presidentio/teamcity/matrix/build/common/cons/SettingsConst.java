@@ -26,6 +26,7 @@ public class SettingsConst {
     public static final String PROP_TEAMCITY_SERVER_PASSWORD = "teamcity.server.password";
     public static final String PROP_ONLY_DIAGONAL = "only.diagonal";
     public static final String PROP_WAIT_BUILDS_FINISH = "wait.builds.finish";
+    public static final String PROP_CONST_BUILD_PARAMETERS = "matrix.parameters.const";
 
     public String getPROP_BUILD_TYPE_ID() {
         return PROP_BUILD_TYPE_ID;
@@ -53,5 +54,9 @@ public class SettingsConst {
 
     public String getPROP_WAIT_BUILDS_FINISH() {
         return PROP_WAIT_BUILDS_FINISH;
+    }
+
+    public String getPROP_CONST_BUILD_PARAMETERS() {
+        return PROP_CONST_BUILD_PARAMETERS;
     }
 }

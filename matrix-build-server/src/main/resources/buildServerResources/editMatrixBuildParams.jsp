@@ -49,6 +49,18 @@
         </td>
     </tr>
     <tr>
+        <th><label for="${settings.PROP_CONST_BUILD_PARAMETERS}">Const build parameters: <l:star/></label></th>
+        <td>
+            <props:multilineProperty name="${settings.PROP_CONST_BUILD_PARAMETERS}" rows="10"
+                                     cols="58"
+                                     linkTitle="Const build parameters"
+                                     className="longField"
+                                     expanded="true"/>
+            <span class="error" id="error_${settings.PROP_CONST_BUILD_PARAMETERS}"></span>
+            <span class="smallNote">A newline-separated list of properties</span>
+        </td>
+    </tr>
+    <tr>
         <th><label for="${settings.PROP_TEAMCITY_SERVER_USERNAME}">Username: <l:star/></label></th>
         <td>
             <props:textProperty name="${settings.PROP_TEAMCITY_SERVER_USERNAME}"/>

@@ -26,6 +26,7 @@ import javax.ws.rs.NotFoundException;
 import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.IOException;
+import java.io.StringReader;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -48,6 +49,7 @@ public class MatrixBuildProcess implements BuildProcess, Runnable {
     private AppRestBuildTypesResource buildTypesResource;
     private Report report;
     private volatile boolean canceled = false;
+    private java.util.Properties consts;
 
     public MatrixBuildProcess(ArtifactsWatcher artifactsWatcher, BuildRunnerContext buildRunnerContext) {
         this.buildRunnerContext = buildRunnerContext;
@@ -100,6 +102,17 @@ public class MatrixBuildProcess implements BuildProcess, Runnable {
     public void run() {
         buildRunnerContext.getBuild().getBuildLogger().message("Started matrix build");
         initRestResources();
+
+        consts = new java.util.Properties();
+        String constParamters = buildRunnerContext.getRunnerParameters().get(SettingsConst.PROP_CONST_BUILD_PARAMETERS);
+        try {
+            consts.load(new StringReader(constParamters));
+        } catch (IOException e) {
+            buildRunnerContext.getBuild().getBuildLogger().error("Failed to parse const parameters: " + constParamters);
+            buildRunnerContext.getBuild().getBuildLogger().exception(e);
+            buildFinishedStatus = BuildFinishedStatus.FINISHED_FAILED;
+            return;
+        }
 
         String buildConfigurationParameters = buildRunnerContext.getRunnerParameters().get(SettingsConst.PROP_BUILD_PARAMETERS);
         Map<String, String[]> parameters;
@@ -189,6 +202,14 @@ public class MatrixBuildProcess implements BuildProcess, Runnable {
             childBuildProperties.getProperty().add(property);
         }
         build.setProperties(childBuildProperties);
+
+        //add const properties
+        for (String name : consts.stringPropertyNames()) {
+            Property property = new Property();
+            property.setName(name);
+            property.setValue(consts.getProperty(name));
+            childBuildProperties.getProperty().add(property);
+        }
 
         //add tag
         Tags tags = new Tags();

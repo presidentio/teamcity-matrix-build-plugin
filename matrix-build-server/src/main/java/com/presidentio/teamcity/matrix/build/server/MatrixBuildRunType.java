@@ -52,6 +52,8 @@ public class MatrixBuildRunType extends RunType {
                 .append(buildType.getName()).append("\n");
         String properties = parameters.get(SettingsConst.PROP_BUILD_PARAMETERS);
         stringBuilder.append("Properties:\n").append(properties);
+        String constProperties = parameters.get(SettingsConst.PROP_CONST_BUILD_PARAMETERS);
+        stringBuilder.append("\nConst:\n").append(constProperties);
         return stringBuilder.toString();
     }
 
