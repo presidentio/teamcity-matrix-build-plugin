@@ -10,6 +10,7 @@ import com.presidentio.teamcity.rest.client.TeamcityServerClientImpl;
 import com.presidentio.teamcity.rest.cons.BuildStateConst;
 import com.presidentio.teamcity.rest.cons.BuildStatusConst;
 import com.presidentio.teamcity.rest.dto.*;
+import com.presidentio.teamcity.rest.dto.Properties;
 import com.presidentio.teamcity.rest.resource.AppRestBuildQueueResource;
 import com.presidentio.teamcity.rest.resource.AppRestBuildTypesResource;
 import com.presidentio.teamcity.rest.resource.AppRestBuildsResource;
@@ -27,10 +28,7 @@ import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.IOException;
 import java.io.StringReader;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * Created by presidentio on 10/30/15.
@@ -212,11 +210,14 @@ public class MatrixBuildProcess implements BuildProcess, Runnable {
         }
 
         //add tag
-        Tags tags = new Tags();
-        Tag tag = new Tag();
-        tag.setName("matrix");
-        tags.getTag().add(tag);
-        build.setTags(tags);
+        if (parameters.values().size() == 1) {
+            String parameterValue = parameters.values().iterator().next();
+            Tags tags = new Tags();
+            Tag tag = new Tag();
+            tag.setName(parameterValue);
+            tags.getTag().add(tag);
+            build.setTags(tags);
+        }
 
         VcsRootEntries childBuildVcsRootEntries = buildTypesResource.getVcsRootEntries(buildTypeId, null);
         Revisions revisions = new Revisions();
