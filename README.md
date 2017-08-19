@@ -12,11 +12,29 @@ It is implementation of teamcity feature [TW-3661](https://youtrack.jetbrains.co
 
 ## Usage
 
-### Install
-Download latest version of the plugin from releases tab and install it
+### Build plugin from sources
+
+1) Clone git repository
+```bash
+git clone https://github.com/presidentio/teamcity-matrix-build-plugin
+```
+2) Build
+```bash
+mvn clean install
+```
+3) Plugin built and ready for installation. Plugin bundle location: `./target/matrix-build.zip`
+
+### Installation
+1) Download latest version of the plugin from releases tab or use built by yourself and install it
 ```
 wget https://github.com/presidentio/teamcity-matrix-build-plugin/releases/download/v1.0.0/matrix-build.zip
-cp target/matrix-build.zip <TeamCity Data Directory>/plugins/
+```
+2) Copy plugin to teamcity plugins directory
+```bash
+cp PATH_TO_PLUGIN_BUNDLE <TeamCity Data Directory>/plugins/
+```
+3) Restart teamcity server:
+```bash
 service teamcity restart
 ```
 More info: [Installing Additional Plugins for Teamcity](https://confluence.jetbrains.com/display/TCD9/Installing+Additional+Plugins)
