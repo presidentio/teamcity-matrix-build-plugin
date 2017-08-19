@@ -4,7 +4,7 @@
     <parent>
         <artifactId>matrix-build</artifactId>
         <groupId>com.presidentio.teamcity</groupId>
-        <version>1.0.1-SNAPSHOT</version>
+        <version>1.0.1</version>
     </parent>
     <artifactId>matrix-build-server</artifactId>
     <packaging>jar</packaging>
