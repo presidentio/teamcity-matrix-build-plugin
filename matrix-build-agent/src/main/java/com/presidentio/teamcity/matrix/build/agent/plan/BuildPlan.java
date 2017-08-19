@@ -19,8 +19,10 @@ import java.util.Properties;
 public class BuildPlan {
 
     private List<PlannedBuild> builds = new ArrayList<>();
+    private String branch;
 
-    public BuildPlan(MatrixBuildConfiguration configuration) {
+    public BuildPlan(MatrixBuildConfiguration configuration, String branch) {
+        this.branch = branch;
         init(configuration);
     }
 
@@ -106,13 +108,10 @@ public class BuildPlan {
         tags.getTag().add(tag);
         build.setTags(tags);
 
-        enrichWithRevision(build);
+        //set branch
+        build.setBranchName(branch);
 
         return build;
-    }
-
-    private void enrichWithRevision(Build build) {
-        //TODO: implement
     }
 
     public List<PlannedBuild> getBuilds() {

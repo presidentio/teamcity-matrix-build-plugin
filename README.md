@@ -56,10 +56,6 @@ If you don't want to use you credentials - create new user and grant him permiss
 This inconvenience will be removed as soon as build user [will have required permissions](https://youtrack.jetbrains.com/issue/TW-39206).
 At this point you have configured build.
 
-#####Vcs Revision
-If you want to guarantee that each child build will be run with the same source revision, you need to attache both build configurations to the same vcs root.
-In this case build revision will be promoted from parent build to all child.
-
 ### Viewing Results
 You can look at child builds list at *Matrix build* tab on build page. 
 There are listed finished, running and queued builds with there parameters.

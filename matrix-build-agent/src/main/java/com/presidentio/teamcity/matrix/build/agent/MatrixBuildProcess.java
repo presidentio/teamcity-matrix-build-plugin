@@ -34,6 +34,7 @@ import java.util.List;
 public class MatrixBuildProcess implements BuildProcess, Runnable {
 
     private static final Logger LOGGER = Loggers.AGENT;
+    public static final String BRANCH_CONFIG = "teamcity.build.branch";
 
     private ObjectMapper objectMapper = new ObjectMapper();
     private Thread processThread;
@@ -105,7 +106,7 @@ public class MatrixBuildProcess implements BuildProcess, Runnable {
         }
 
         List<QueuedBuild> builds = new ArrayList<>();
-        BuildPlan buildPlan = new BuildPlan(configuration);
+        BuildPlan buildPlan = new BuildPlan(configuration, getBranch());
         for (PlannedBuild plannedBuild : buildPlan.getBuilds()) {
             builds.add(plannedBuild.startBuild(buildQueueResource, buildsResource,
                     buildRunnerContext.getBuild().getBuildLogger()));
@@ -159,6 +160,10 @@ public class MatrixBuildProcess implements BuildProcess, Runnable {
         File reportFile = new File(buildRunnerContext.getWorkingDirectory(), PluginConst.REPORT_FILE);
         objectMapper.writeValue(reportFile, report);
         artifactsWatcher.addNewArtifactsPath(reportFile.getAbsolutePath() + " => " + PluginConst.REPORT_DIRECTORY);
+    }
+
+    private String getBranch() {
+        return buildRunnerContext.getConfigParameters().get(BRANCH_CONFIG);
     }
 
 }
