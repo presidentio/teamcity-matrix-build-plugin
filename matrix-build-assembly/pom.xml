@@ -4,7 +4,7 @@
     <parent>
         <artifactId>matrix-build</artifactId>
         <groupId>com.presidentio.teamcity</groupId>
-        <version>1.0.1</version>
+        <version>1.0.2-SNAPSHOT</version>
     </parent>
     <artifactId>matrix-build-assembly</artifactId>
     <packaging>pom</packaging>
