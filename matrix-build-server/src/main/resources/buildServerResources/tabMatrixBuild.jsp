@@ -50,7 +50,7 @@
                         <c:when test="${queuedBuild != null}">
                             <td></td>
                             <td>
-                                <bs:queuedBuildIcon queuedBuild="${queuedBuild}"/>
+                                <bs:queuedBuildIcon promotion="${queuedBuild.buildPromotion}"/>
                                 <q:queueLink queuedBuild="${queuedBuild}"
                                              noPopup="true">#${queuedBuild.orderNumber}</q:queueLink>
                             </td>
