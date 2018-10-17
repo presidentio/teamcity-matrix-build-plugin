@@ -82,6 +82,8 @@ public class MatrixBuildRunTypePropertiesProcessor implements PropertiesProcesso
             properties.load(new StringReader(map.get(SettingsConst.PROP_CONST_BUILD_PARAMETERS)));
         } catch (IOException e) {
             result.add(new InvalidProperty(SettingsConst.PROP_CONST_BUILD_PARAMETERS, Dictionary.ERROR_INVALID_PROPERTIES));
+        } catch (NullPointerException e) {
+            result.add(new InvalidProperty(SettingsConst.PROP_CONST_BUILD_PARAMETERS, Dictionary.ERROR_INVALID_PROPERTIES));
         }
 
         return result;
